@@ -70,20 +70,33 @@ F que simboliza la cantidad de Feriapesos que Norman posee. Suponer que 0 <= X, 
 
 Salida
 Imprimir el símbolo $ seguido de un entero que representa la cantidad de dinero que aún debe pagar Norman para recibir su buñuelo.
-.
+
+Ejemplo de entrada
+8
+29
+
+Ejemplo de salida
+$6
+
+Ejemplo de entrada 2
+1
+10
+
+Ejemplo de salida 2
+$0
 */
-// use std::io::Read;
+use std::io::Read;
 
-// fn main()  {
-//     let mut buffer = String::new();
-//     std::io::stdin().read_to_string(&mut buffer).unwrap();
-//     let mut input = buffer.split_whitespace();
+fn main() {
+    let mut buffer = String::new();
+    std::io::stdin().read_to_string(&mut buffer).unwrap();
+    let mut input = buffer.split_ascii_whitespace();
 
-//     let x: i64 = input.next().unwrap().parse().unwrap();
-//     let f: i64 = input.next().unwrap().parse().unwrap();
+    let x: u32 = input.next().unwrap().parse().unwrap();
+    let f: u32 = input.next().unwrap().parse().unwrap();
 
-//     println!("${}", x - (f / 10));
-// }
+    
+}
 
 // D. Imprimiendo enteros por paridad
 // use std::io::{Read};
@@ -236,52 +249,52 @@ Avg. arrival time: 2
 
 */
 
-use std::io::{self};
+// use std::io::{self};
 
-fn main() {
-    let mut input = String::new();
-    let mut case = 1;
+// fn main() {
+//     let mut input = String::new();
+//     let mut case = 1;
 
-    loop {
-        input.clear();
-        io::stdin().read_line(&mut input).expect("Failed to read input");
-        let values: Vec<u64> = input
-            .split_whitespace()
-            .map(|s| s.trim().parse().expect("Failed to parse input"))
-            .collect();
+//     loop {
+//         input.clear();
+//         io::stdin().read_line(&mut input).expect("Failed to read input");
+//         let values: Vec<u64> = input
+//             .split_whitespace()
+//             .map(|s| s.trim().parse().expect("Failed to parse input"))
+//             .collect();
 
-        if values.len() == 4 && values.iter().all(|&x| x == 0) {
-            break;
-        }
+//         if values.len() == 4 && values.iter().all(|&x| x == 0) {
+//             break;
+//         }
 
-        let v1 = values[0];
-        let d1 = values[1];
-        let v2 = values[2];
-        let d2 = values[3];
+//         let v1 = values[0];
+//         let d1 = values[1];
+//         let v2 = values[2];
+//         let d2 = values[3];
 
-        let time1 = (d1 as f64) / (v1 as f64);
-        let time2 = (d2 as f64) / (v2 as f64);
+//         let time1 = (d1 as f64) / (v1 as f64);
+//         let time2 = (d2 as f64) / (v2 as f64);
 
-        println!("Case #{}: {}", case, if time1 < time2 { "You owe me a beer!" } else { "No beer for the captain." });
+//         println!("Case #{}: {}", case, if time1 < time2 { "You owe me a beer!" } else { "No beer for the captain." });
 
-        let avg_time = (time1 + time2) / 2.0;
+//         let avg_time = (time1 + time2) / 2.0;
 
-        let avg_time_numerator = (avg_time * 2.0) as u64;
-        let avg_time_denominator = 2;
+//         let avg_time_numerator = (avg_time * 2.0) as u64;
+//         let avg_time_denominator = 2;
 
-        if avg_time_denominator == 1 {
-            println!("Avg. arrival time: {}", avg_time_numerator);
-        } else {
-            if avg_time_numerator % avg_time_denominator == 0 {
-                println!("Avg. arrival time: {}", avg_time_numerator / avg_time_denominator);
-            } else {
-                println!("Avg. arrival time: {}/{}", avg_time_numerator, avg_time_denominator);
-            }
-        }
+//         if avg_time_denominator == 1 {
+//             println!("Avg. arrival time: {}", avg_time_numerator);
+//         } else {
+//             if avg_time_numerator % avg_time_denominator == 0 {
+//                 println!("Avg. arrival time: {}", avg_time_numerator / avg_time_denominator);
+//             } else {
+//                 println!("Avg. arrival time: {}/{}", avg_time_numerator, avg_time_denominator);
+//             }
+//         }
 
-        case += 1;
-    }
-}
+//         case += 1;
+//     }
+// }
 
 // J. Ordenamiento binario
 // use std::io::{Read};
@@ -316,40 +329,6 @@ fn main() {
 
 
 // K. Desarrollos Binomiales
-/*
-Descripción
-Un binomio es una expresión algebráica compuesta por dos términos distintos, por ejemplo, x + y es un binomio. Cuando elevamos un binomio a una potencia 
-n , donde n es un entero no negativo, obtenemos diferentes expresiones algebráicas dependiendo del valor de n . Por ejemplo, para 
-n = 1,2,3 obtenemos las siguientes expresiones:
-
-(x+y)^1 = x+y
-(x+y)^2 = x^2+2xy+y^2
-(x+y)^3 = x^3+3x^2y+3xy^2+y^3
-
-
-Tu tarea para este problema es, que dado el exponente n , encuentres el desarrollo de (x+y)^n tomando en cuenta las siguientes consideraciones:
-- Si el exponente de alguna de las variables es 0, entonces omitimos la variable, de modo que x^0y lo escribimos como y.
-
-- Si el exponente de alguna de las variables es 1, entonces omitimos el exponente, de modo que x^1 lo escribimos como x.
-
-- Si el coeficiente del término es 1, entonces lo omitimos, de manera que 1x lo escribimos como x.
-
-Entrada
-Un entero n, el exponente a elevar del binomio x+y.
-
-Salida
-La expansión del binomio (x+y)^n. Los términos deberán imprimirse en una sola línea sin espacios y tomando en cuenta las anteriores consideraciones. Los exponentes se deberán imprimir anteponiendo el carácter ^.
-
-Ejemplo Entrada
-3
-
-Ejemplo Salida
-x^3+3*x^2y+3*xy^2+y^3
-
-limites
-0 <= n <= 50
-Si utilizas únicamente int obtendrás pocos puntos, para la solución deberás usar long long int. 
-*/
 // use std::io;
 // fn main() {
 //     let mut input = String::new();
@@ -359,29 +338,36 @@ Si utilizas únicamente int obtendrás pocos puntos, para la solución deberás 
 
 //     let mut result = String::new();
 
-//     for i in 0..=n {
-//         let coeficient = binomial_coeficient(n, i);
-//         if coeficient != 1 {
-//             result.push_str(&format!("{}", coeficient));
-//         }
-//         if n - i != 0 {
-//             result.push_str(&format!("x"));
-//             if n - i != 1 {
-//                 result.push_str(&format!("^{}", n - i));
-//             }
-//         }
-//         if i != 0 {
-//             result.push_str(&format!("y"));
-//             if i != 1 {
-//                 result.push_str(&format!("^{}", i));
-//             }
-//         }
-//         result.push_str("+");
+//     if n == 0 {
+//         result.push_str("1");
+//         println!("{}", result);
+//         return;
 //     }
-
-//     result.pop();
-
-//     println!("{}", result);
+//     else {
+//         for i in 0..=n {
+//             let coeficient = binomial_coeficient(n, i);
+//             if coeficient != 1 {
+//                 result.push_str(&format!("{}", coeficient));
+//             }
+//             if n - i != 0 {
+//                 result.push_str(&format!("x"));
+//                 if n - i != 1 {
+//                     result.push_str(&format!("^{}", n - i));
+//                 }
+//             }
+//             if i != 0 {
+//                 result.push_str(&format!("y"));
+//                 if i != 1 {
+//                     result.push_str(&format!("^{}", i));
+//                 }
+//             }
+//             result.push_str("+");
+//         }
+    
+//         result.pop();
+    
+//         println!("{}", result);
+//     }
 // }
 
 // fn binomial_coeficient(n: u64, k: u64) -> u64 {
@@ -392,10 +378,6 @@ Si utilizas únicamente int obtendrás pocos puntos, para la solución deberás 
 //     }
 //     coeficient
 // }
-
-
-
-
 
 // L. The Incrementor
 // use std::io::{Read};
