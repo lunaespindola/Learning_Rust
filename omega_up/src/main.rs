@@ -1,4 +1,5 @@
 // A. El mayor de dos
+// use std::io::{Read, self};
 // fn main() {
 //     let mut input = String::new();
 //     while io::stdin().read_line(&mut input).unwrap() > 0 {
@@ -85,18 +86,19 @@ Ejemplo de entrada 2
 Ejemplo de salida 2
 $0
 */
-use std::io::Read;
+// use std::io::Read;
 
-fn main() {
-    let mut buffer = String::new();
-    std::io::stdin().read_to_string(&mut buffer).unwrap();
-    let mut input = buffer.split_ascii_whitespace();
+// fn main() {
+//     let mut buffer = String::new();
+//     std::io::stdin().read_to_string(&mut buffer).unwrap();
+//     let mut input = buffer.split_ascii_whitespace();
 
-    let x: u32 = input.next().unwrap().parse().unwrap();
-    let f: u32 = input.next().unwrap().parse().unwrap();
+//     let x: u32 = input.next().unwrap().parse().unwrap();
+//     let f: u32 = input.next().unwrap().parse().unwrap();
 
-    
-}
+
+
+// }
 
 // D. Imprimiendo enteros por paridad
 // use std::io::{Read};
